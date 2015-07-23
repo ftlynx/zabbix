@@ -1,0 +1,26 @@
+#!/bin/bash
+#
+#Author	: ftlynx
+#Time	: 2015-06-09
+#
+#ss state: established|syn-recv|syn-sent|fin-wait-1|fin-wait-2|time-wait|
+
+case $1 in 
+	"Total")
+		num=`ss -t -a |wc -l`
+		;;
+	"TIME_WAIT")
+		num=`ss -t -o state time-wait |wc -l`
+		;;
+	"SYN_RECV")
+		num=`ss -t -o state syn-recv |wc -l`
+		;;
+	"ESTABLISHED")
+		num=`ss -t -o state established |wc -l`
+		;;
+	*)
+		num=1
+		;;
+esac
+num=$(($num - 1))
+echo $num
