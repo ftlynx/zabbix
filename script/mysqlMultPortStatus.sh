@@ -20,5 +20,5 @@ Password=`awk -v h=$Host '/^mysql/ {if($2==h) print $0}' $ConfigFile | awk -v p=
 if [ -z "$3" ];then
 	mysqladmin -u $User -h "$Host" -p"$Password" -P $Port ping | grep -c live
 else
-	mysqladmin -u $User -h "$Host" -p"$Password" -P $Port extended-status | grep -w $1 | awk -F '|' '{print $3}' | awk '{print $1}'
+	mysqladmin -u $User -h "$Host" -p"$Password" -P $Port extended-status | grep -w $3 | awk -F '|' '{print $3}' | awk '{print $1}'
 fi
